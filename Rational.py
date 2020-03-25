@@ -20,9 +20,19 @@ class Rational:
         if isinstance(other, Rational):
             return (self.__numerateur*other.__denominateur, self.__denominateur*other.__numerateur)
         else: print("Les deux objets doivent être de la même class")
-    def __str__(self):
-        return str(self.__numerateur)+"/"+str(self.__denominateur)
 
+    def PGCD(self,a,b):
+        while b != 0:
+            r = a%b
+            a,b=b,r
+        return a
+
+    def __str__(self):
+        if self.__denominateur > self.__numerateur:
+            a = self.PGCD(self.__numerateur,self.__denominateur)
+            return str(self.__numerateur/a)+"/"+str(self.__denominateur/a)
+        else:
+            return str(self.__numerateur//self.__denominateur)
 if __name__  == '__main__':
     f1 = Rational(1,2)
     f2 = Rational(1,4)
